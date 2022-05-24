@@ -1,10 +1,17 @@
 <html>
+
+<!--  -->
+
 <?php
+	
+	<!-- строка соединения с БД -->
+
 	$link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
 
 	if (!$link) { echo('Ошибка соединения'); }
 	else { 
 
+	<!-- отрисовка шапки таблицы для вывода данных -->
 
 	echo '<table border="1">';
 	echo '<thead>';
@@ -18,6 +25,8 @@
 	echo '</tr>';
 	echo '</thead>';
 	echo '<tbody>';
+
+	<!-- метод обработки пост-запроса на добавление новой записи в БД -->
 
 	if(isset($_POST['name']) && isset($_POST['element']) && isset($_POST['weapon']) && isset($_POST['rarity'])) {
 	$link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
@@ -41,6 +50,8 @@
 		mysqli_close($link);
 	}
 
+	<!-- метод обработки гет-запроса на удаление записи из БД -->
+
 	if(isset($_GET['id'])) {
 		$link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
 		if (!$link) { echo('Ошибка соединения'); }
@@ -58,7 +69,11 @@
 		mysqli_close($link);
 	}
 
+	<!-- селект-запрос на выборку данных из таблицы Characters с учетом внешних ключей -->
+
 	$res = mysqli_query($link,"SELECT Characters.id, character_name, character_rarity, weapons.weapon_type, weapons.weapon_name, elements.element_name FROM `Characters` JOIN `weapons` ON weapons.id = Characters.character_weapon JOIN `elements` ON elements.id = Characters.character_element;");
+
+	<!-- вывод данных из БД -->
 
 	if($res) {
 	while($row = mysqli_fetch_assoc($res)) {
@@ -83,6 +98,8 @@
 }
 
 ?>
+
+<!-- форма для создания новой записи в БД -->
 <br>
 <body>
 	<form action="" method="POST">
