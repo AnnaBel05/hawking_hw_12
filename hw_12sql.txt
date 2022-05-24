@@ -1,0 +1,14 @@
+mysql> use genshin_characters;
+Database changed
+
+mysql> CREATE TABLE elements (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, element_name VARCHAR(45), element_color VARCHAR(45), element_descr VARCHAR(200));
+Query OK, 0 rows affected (0,13 sec)
+
+mysql> CREATE TABLE weapons (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, weapon_type VARCHAR(45), weapon_name VARCHAR(200), weapon_rarity INT NOT NULL);
+Query OK, 0 rows affected (0,03 sec)
+
+mysql> CREATE TABLE Characters (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, character_element INT NOT NULL, character_name VARCHAR(45), character_rarity INT NOT NULL, character_weapon INT NOT NULL, CONSTRAINT FK_character_element FOREIGN KEY(character_element) REFERENCES elements(id) ON DELETE CASCADE, CONSTRAINT FK_character_weapon FOREIGN KEY(character_weapon) REFERENCES weapons(id) ON DELETE CASCADE);
+
+mysql> INSERT INTO elements (element_name, element_color, element_descr) VALUES ('Anemo', 'Turquoise','Mondstadt'), ('Geo', 'Gold','Liyue'), ('Electro', 'Purple','Inazuma'), ('Dendro', 'Green','Sumeru'), ('Hydro', 'Blue','Fontaine'), ('Pyro', 'Red','Natlan'), ('Cryo', 'Blue','Snezhnaya');
+
+mysql> INSERT INTO weapons (weapon_type, weapon_name, weapon_rarity) VALUES ('Sword', 'Dull Blade', 1), ('Polearm', 'Beginners Protector', 1), ('Catalyst', 'Apprentice Notes', 1), ('Bow', 'Hunters Bow', 1), ('Claymore', 'Waster Greatsword', 1);
