@@ -7,6 +7,9 @@
 <body>
 
 <?php
+
+// проверка существования записи в бд
+
 if (isset($_GET["id"]) && !empty( $_GET['id'] ) ) {
     $link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
         if (!$link) { echo('Ошибка соединения'); }
@@ -14,6 +17,8 @@ if (isset($_GET["id"]) && !empty( $_GET['id'] ) ) {
 
     $id_db = mysqli_real_escape_string($link,$_GET['id']);
     $res = mysqli_query($link,"SELECT Characters.id, Characters.character_name, Characters.character_rarity, weapons.weapon_type, weapons.weapon_name, elements.element_name FROM `Characters` JOIN `weapons` ON weapons.id = Characters.character_weapon JOIN `elements` ON elements.id = Characters.character_element WHERE Characters.id=$id_db;");  
+
+// создание переменных с данными из записи в БД
 
     if($res) {
         $row = mysqli_fetch_assoc($res);
@@ -39,6 +44,8 @@ else {
     // exit();
 }
 ?>
+
+<!-- вывод данных по созданным ранее переменным -->
 
     <h1>View Record</h1>
         <div class="form-group">
