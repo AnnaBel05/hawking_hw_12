@@ -6,7 +6,7 @@
 	
 	<!-- строка соединения с БД -->
 
-	$link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
+	$link = mysqli_connect('localhost', 'belphie', '***','genshin_characters');
 
 	if (!$link) { echo('Ошибка соединения'); }
 	else { 
@@ -29,7 +29,7 @@
 	<!-- метод обработки пост-запроса на добавление новой записи в БД -->
 
 	if(isset($_POST['name']) && isset($_POST['element']) && isset($_POST['weapon']) && isset($_POST['rarity'])) {
-	$link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
+	$link = mysqli_connect('localhost', 'belphie', '***','genshin_characters');
 		if (!$link) { echo('Ошибка соединения'); }
 		else { echo('Успешно установлено'); }
 
@@ -53,7 +53,7 @@
 	<!-- метод обработки гет-запроса на удаление записи из БД -->
 
 	if(isset($_GET['id'])) {
-		$link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
+		$link = mysqli_connect('localhost', 'belphie', '***','genshin_characters');
 		if (!$link) { echo('Ошибка соединения'); }
 		else { echo('Успешно установлено'); }
 
