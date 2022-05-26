@@ -11,7 +11,7 @@
 // проверка существования записи в бд
 
 if (isset($_GET["id"]) && !empty( $_GET['id'] ) ) {
-    $link = mysqli_connect('localhost', 'belphie', 'B_26_foreva','genshin_characters');
+    $link = mysqli_connect('localhost', 'belphie', '***','genshin_characters');
         if (!$link) { echo('Ошибка соединения'); }
         else { echo('Успешно установлено'); }
 
